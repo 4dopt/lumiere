@@ -1,19 +1,20 @@
 import React from 'react';
 
-interface GlassCardProps {
+interface CardProps {
   children: React.ReactNode;
   className?: string;
   onClick?: () => void;
   hoverEffect?: boolean;
 }
 
-export const GlassCard: React.FC<GlassCardProps> = ({ children, className = '', onClick, hoverEffect = false }) => {
+// Renamed internally but keeping file name for compatibility with imports
+export const GlassCard: React.FC<CardProps> = ({ children, className = '', onClick, hoverEffect = false }) => {
   return (
     <div 
       onClick={onClick}
       className={`
-        glass-panel rounded-2xl p-6 transition-all duration-300
-        ${hoverEffect ? 'glass-card-hover cursor-pointer' : ''}
+        bg-white rounded-xl p-6 border border-gray-100 card-shadow transition-all duration-300
+        ${hoverEffect ? 'hover:shadow-lg hover:-translate-y-1 cursor-pointer' : ''}
         ${className}
       `}
     >

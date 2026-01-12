@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Customer, Reservation, RestaurantSettings } from '../types';
-import { MOCK_CUSTOMERS, MOCK_RESERVATIONS, MOCK_SETTINGS } from '../constants';
+import { Customer, Reservation, RestaurantSettings, Order } from '../types';
+import { MOCK_CUSTOMERS, MOCK_RESERVATIONS, MOCK_SETTINGS, MOCK_ORDERS } from '../constants';
 
 interface AppContextType {
   customers: Customer[];
   reservations: Reservation[];
+  orders: Order[];
   settings: RestaurantSettings;
   addReservation: (res: Reservation) => void;
   updateReservation: (res: Reservation) => void;
@@ -17,6 +18,7 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [customers, setCustomers] = useState<Customer[]>(MOCK_CUSTOMERS);
   const [reservations, setReservations] = useState<Reservation[]>(MOCK_RESERVATIONS);
+  const [orders, setOrders] = useState<Order[]>(MOCK_ORDERS);
   const [settings, setSettings] = useState<RestaurantSettings>(MOCK_SETTINGS);
 
   const addReservation = (res: Reservation) => {
@@ -28,12 +30,12 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       const newCustomer: Customer = {
         id: `c${Date.now()}`,
         name: res.customerName,
-        email: '', // In a real app we'd capture this in booking
+        email: '', 
         phone: '',
         visits: 1,
         lastVisit: res.date,
         notes: '',
-        avatarColor: 'bg-indigo-500'
+        avatarColor: 'bg-emerald-100 text-emerald-600'
       };
       setCustomers(prev => [...prev, newCustomer]);
     } else {
@@ -60,6 +62,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
     <AppContext.Provider value={{
       customers,
       reservations,
+      orders,
       settings,
       addReservation,
       updateReservation,

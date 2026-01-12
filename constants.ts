@@ -1,71 +1,79 @@
-import { Customer, Reservation, RestaurantSettings } from './types';
+import { Customer, Reservation, RestaurantSettings, Order } from './types';
 
 export const MOCK_SETTINGS: RestaurantSettings = {
-  name: "Lumière Bistro",
-  description: "Experience the finest modern French fusion in a breathtaking atmosphere.",
+  name: "Malinessa",
+  description: "Experience the finest modern French fusion.",
   address: "123 Starlight Avenue, Metropolis",
   phone: "+1 (555) 012-3456",
-  email: "reservations@lumiere.com",
+  email: "reservations@malinessa.com",
   openingTime: "17:00",
   closingTime: "23:00",
-  tables: 20,
+  tables: 34,
   slotInterval: 30,
-  themeColor: "violet",
-  coverUrl: "https://picsum.photos/1200/400",
+  themeColor: "emerald",
+  coverUrl: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop",
   logoUrl: "https://picsum.photos/200/200",
   design: {
-    primaryColor: "#6366f1", // Indigo 500
-    secondaryColor: "#ec4899", // Pink 500
-    backgroundColor: "#020617", // Slate 950
-    textColor: "#f8fafc", // Slate 50
+    primaryColor: "#10b981", // Emerald 500
+    secondaryColor: "#34d399", // Emerald 400
+    backgroundColor: "#ffffff",
+    textColor: "#1f2937", // Gray 800
     fontFamily: "Inter",
-    heroOverlayOpacity: 0.6,
-    heroAlignment: "left",
+    heroOverlayOpacity: 0.4,
+    heroAlignment: "center",
     heroHeight: "standard",
-    cornerRadius: 16
+    cornerRadius: 8
   }
 };
+
+export const MOCK_ORDERS: Order[] = [
+  { id: '#12345', date: 'Sep 10, 2024', time: '14:45 PM', server: 'Mark Davis', amount: 85.50, paymentStatus: 'Paid', type: 'Delivery', status: 'Completed' },
+  { id: '#12346', date: 'Sep 10, 2024', time: '15:00 PM', server: 'Sarah Smith', amount: 120.00, paymentStatus: 'Paid', type: 'Dine-in', status: 'Cooking' },
+  { id: '#12347', date: 'Sep 10, 2024', time: '15:15 PM', server: 'John Doe', amount: 45.20, paymentStatus: 'Pending', type: 'Online', status: 'Ready' },
+  { id: '#12348', date: 'Sep 10, 2024', time: '15:30 PM', server: 'Emily Chen', amount: 60.00, paymentStatus: 'Unpaid', type: 'Takeaway', status: 'Completed' },
+  { id: '#12349', date: 'Sep 10, 2024', time: '15:45 PM', server: 'Mark Davis', amount: 95.50, paymentStatus: 'Paid', type: 'Dine-in', status: 'Completed' },
+];
 
 export const MOCK_CUSTOMERS: Customer[] = [
   {
     id: 'c1',
-    name: "Elena Fisher",
-    email: "elena@example.com",
+    name: "Jacob Jones",
+    email: "jacob@example.com",
     phone: "(555) 123-4567",
     visits: 12,
     lastVisit: "2023-10-25",
-    notes: "Prefers window seat. Vegan.",
-    avatarColor: "bg-pink-500"
+    notes: "Prefers window seat.",
+    avatarColor: "bg-emerald-100 text-emerald-600"
   },
   {
     id: 'c2',
-    name: "Nathan Drake",
-    email: "nathan@example.com",
+    name: "Arlene McCoy",
+    email: "arlene@example.com",
     phone: "(555) 987-6543",
     visits: 4,
     lastVisit: "2023-10-15",
-    notes: "Allergic to shellfish.",
-    avatarColor: "bg-blue-500"
+    notes: "Allergic to nuts.",
+    avatarColor: "bg-blue-100 text-blue-600"
   },
   {
     id: 'c3',
-    name: "Lara Croft",
-    email: "lara@example.com",
+    name: "Esther Howard",
+    email: "esther@example.com",
     phone: "(555) 456-7890",
     visits: 8,
     lastVisit: "2023-10-20",
     notes: "Likes Table 5.",
-    avatarColor: "bg-emerald-500"
+    avatarColor: "bg-orange-100 text-orange-600"
   },
   {
     id: 'c4',
-    name: "Arthur Morgan",
-    email: "arthur@example.com",
+    name: "Cameron Williamson",
+    email: "cameron@example.com",
     phone: "(555) 222-3333",
     visits: 2,
     lastVisit: "2023-09-01",
     notes: "",
-    avatarColor: "bg-amber-600"
+    avatarColor: "bg-purple-100 text-purple-600"
   }
 ];
 
@@ -73,7 +81,7 @@ export const MOCK_RESERVATIONS: Reservation[] = [
   {
     id: 'r1',
     customerId: 'c1',
-    customerName: "Elena Fisher",
+    customerName: "Jacob Jones",
     date: new Date().toISOString().split('T')[0], // Today
     time: "19:00",
     partySize: 2,
@@ -84,7 +92,7 @@ export const MOCK_RESERVATIONS: Reservation[] = [
   {
     id: 'r2',
     customerId: 'c2',
-    customerName: "Nathan Drake",
+    customerName: "Arlene McCoy",
     date: new Date().toISOString().split('T')[0], // Today
     time: "20:30",
     partySize: 4,
@@ -94,7 +102,7 @@ export const MOCK_RESERVATIONS: Reservation[] = [
   {
     id: 'r3',
     customerId: 'c3',
-    customerName: "Lara Croft",
+    customerName: "Esther Howard",
     date: new Date(Date.now() + 86400000).toISOString().split('T')[0], // Tomorrow
     time: "18:00",
     partySize: 2,
@@ -104,7 +112,7 @@ export const MOCK_RESERVATIONS: Reservation[] = [
   {
     id: 'r4',
     customerId: 'c4',
-    customerName: "Arthur Morgan",
+    customerName: "Cameron Williamson",
     date: new Date(Date.now() - 86400000).toISOString().split('T')[0], // Yesterday
     time: "19:30",
     partySize: 6,

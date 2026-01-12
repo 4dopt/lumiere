@@ -23,6 +23,17 @@ export interface Reservation {
   notes?: string;
 }
 
+export interface Order {
+  id: string;
+  date: string; // YYYY-MM-DD
+  time: string; // HH:mm AM/PM
+  server: string;
+  amount: number;
+  paymentStatus: 'Paid' | 'Pending' | 'Unpaid';
+  type: 'Dine-in' | 'Takeaway' | 'Delivery' | 'Online';
+  status: 'Completed' | 'Cooking' | 'Ready' | 'Cancelled';
+}
+
 export interface DesignSettings {
   primaryColor: string;
   secondaryColor: string; // Used for gradients or accents

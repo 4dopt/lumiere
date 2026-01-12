@@ -1,104 +1,85 @@
 import React from 'react';
-import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, CalendarDays, Users, Settings, LogOut, ExternalLink, Palette } from 'lucide-react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { LayoutDashboard, CalendarDays, ShoppingCart, Users, FileText, Settings, Bell, Search, ChevronDown, UtensilsCrossed } from 'lucide-react';
 import { useAppContext } from '../services/AppContext';
 
 export const Layout: React.FC = () => {
   const { settings } = useAppContext();
-  const navigate = useNavigate();
 
   const navItems = [
     { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
-    { icon: CalendarDays, label: 'Reservations', path: '/reservations' },
+    { icon: CalendarDays, label: 'Reservation', path: '/reservations' },
+    { icon: ShoppingCart, label: 'Orders', path: '/orders' }, // Added placeholder
     { icon: Users, label: 'Customers', path: '/customers' },
+    { icon: UtensilsCrossed, label: 'Menu', path: '/menu' }, // Added placeholder
+    { icon: FileText, label: 'Reports', path: '/reports' }, // Added placeholder
     { icon: Settings, label: 'Settings', path: '/settings' },
   ];
 
   return (
-    <div className="flex h-screen bg-slate-950 text-slate-200 overflow-hidden">
+    <div className="flex h-screen bg-gray-50 text-gray-800 overflow-hidden font-sans">
       {/* Sidebar */}
-      <aside className="w-64 border-r border-white/5 bg-slate-900/50 backdrop-blur-xl flex flex-col hidden md:flex">
-        <div className="p-6 border-b border-white/5">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-lg premium-gradient flex items-center justify-center text-white font-bold text-lg">
-              L
-            </div>
-            <span className="font-bold text-xl tracking-tight text-white">Lumière</span>
-          </div>
+      <aside className="w-64 bg-white border-r border-gray-100 flex flex-col hidden md:flex shadow-sm z-10">
+        <div className="p-8">
+          <h1 className="text-2xl font-bold text-emerald-500 tracking-tight">Malinessa</h1>
         </div>
 
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 px-4 space-y-1">
           {navItems.map((item) => (
             <NavLink
               key={item.path}
               to={item.path}
               className={({ isActive }) => `
-                flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
+                flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 group font-medium
                 ${isActive 
-                  ? 'bg-indigo-600/10 text-indigo-400 border border-indigo-500/20' 
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'}
+                  ? 'bg-emerald-50 text-emerald-600' 
+                  : 'text-gray-500 hover:text-emerald-600 hover:bg-gray-50'}
               `}
             >
-              <item.icon size={20} className="group-hover:scale-110 transition-transform" />
-              <span className="font-medium">{item.label}</span>
+              <item.icon size={20} />
+              <span>{item.label}</span>
             </NavLink>
           ))}
-          
-           <div className="pt-4 mt-2 border-t border-white/5">
-             <NavLink
-              to="/editor"
-              className={({ isActive }) => `
-                flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group
-                ${isActive 
-                  ? 'bg-indigo-600/10 text-indigo-400 border border-indigo-500/20' 
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'}
-              `}
-            >
-              <Palette size={20} className="group-hover:scale-110 transition-transform" />
-              <span className="font-medium">Page Editor</span>
-            </NavLink>
-           </div>
         </nav>
 
-        <div className="p-4 border-t border-white/5">
-           <a 
-            href="#/book" 
-            target="_blank"
-            className="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-white transition-colors mb-2"
-          >
-             <ExternalLink size={18} />
-             <span className="text-sm">View Public Page</span>
-          </a>
-          <button className="flex items-center gap-3 w-full px-4 py-3 text-slate-400 hover:text-red-400 transition-colors rounded-xl hover:bg-red-500/10">
-            <LogOut size={20} />
-            <span className="font-medium">Logout</span>
-          </button>
+        <div className="p-4 border-t border-gray-100">
+           {/* Placeholder for future footer items if needed */}
         </div>
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto relative">
-        {/* Background Gradients */}
-        <div className="absolute top-[-20%] left-[-10%] w-[500px] h-[500px] bg-violet-600/20 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] bg-pink-600/10 rounded-full blur-[120px] pointer-events-none" />
+      <main className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <header className="h-20 bg-white border-b border-gray-100 flex justify-between items-center px-8 shadow-sm">
+           <div className="relative w-96">
+             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={18} />
+             <input 
+                type="text" 
+                placeholder="Search" 
+                className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-100 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/50 text-gray-700"
+             />
+           </div>
 
-        {/* Mobile Nav Header */}
-        <div className="md:hidden p-4 border-b border-white/5 bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 flex justify-between items-center">
-             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-lg premium-gradient flex items-center justify-center text-white font-bold text-lg">L</div>
-              <span className="font-bold text-lg text-white">Lumière</span>
-            </div>
-             <div className="flex gap-4">
-                {navItems.map(item => (
-                    <NavLink key={item.path} to={item.path} className={({isActive}) => isActive ? 'text-indigo-400' : 'text-slate-400'}>
-                        <item.icon size={24} />
-                    </NavLink>
-                ))}
-            </div>
-        </div>
+           <div className="flex items-center gap-6">
+              <button className="relative p-2 text-gray-400 hover:text-emerald-600 transition-colors">
+                 <Bell size={20} />
+                 <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+              </button>
+              
+              <div className="flex items-center gap-3 cursor-pointer">
+                 <div className="w-10 h-10 rounded-full bg-gray-200 text-gray-600 flex items-center justify-center font-semibold text-sm">
+                   JJ
+                 </div>
+                 <div className="hidden lg:block text-sm">
+                    <p className="font-semibold text-gray-900">Jacob Jones</p>
+                 </div>
+                 <ChevronDown size={16} className="text-gray-400" />
+              </div>
+           </div>
+        </header>
 
-        <div className="p-6 md:p-10 max-w-7xl mx-auto">
-          <Outlet />
+        <div className="flex-1 overflow-y-auto p-8">
+           <Outlet />
         </div>
       </main>
     </div>
