@@ -21,7 +21,7 @@ export const Layout: React.FC = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-white border-r border-gray-100 flex flex-col hidden md:flex shadow-sm z-10">
         <div className="p-8">
-          <h1 className="text-2xl font-bold text-emerald-500 tracking-tight">Malinessa</h1>
+          <h1 className="text-2xl font-bold text-emerald-500 tracking-tight">Lumiere</h1>
         </div>
 
         <nav className="flex-1 px-4 space-y-1">

@@ -23,15 +23,36 @@ export interface Reservation {
   notes?: string;
 }
 
+export interface OrderItem {
+  name: string;
+  quantity: number;
+  price: number;
+}
+
 export interface Order {
   id: string;
+  customerName: string;
+  tableNumber: string;
   date: string; // YYYY-MM-DD
   time: string; // HH:mm AM/PM
   server: string;
   amount: number;
   paymentStatus: 'Paid' | 'Pending' | 'Unpaid';
   type: 'Dine-in' | 'Takeaway' | 'Delivery' | 'Online';
-  status: 'Completed' | 'Cooking' | 'Ready' | 'Cancelled';
+  status: 'Completed' | 'Cooking' | 'Ready' | 'Cancelled' | 'In progress';
+  items: OrderItem[];
+}
+
+export interface MenuItem {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  category: 'Starters' | 'Mains' | 'Desserts' | 'Drinks';
+  imageUrl: string;
+  available: boolean;
+  rating: number;
+  reviews: number;
 }
 
 export interface DesignSettings {

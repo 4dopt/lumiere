@@ -1,11 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { Customer, Reservation, RestaurantSettings, Order } from '../types';
-import { MOCK_CUSTOMERS, MOCK_RESERVATIONS, MOCK_SETTINGS, MOCK_ORDERS } from '../constants';
+import { Customer, Reservation, RestaurantSettings, Order, MenuItem } from '../types';
+import { MOCK_CUSTOMERS, MOCK_RESERVATIONS, MOCK_SETTINGS, MOCK_ORDERS, MOCK_MENU } from '../constants';
 
 interface AppContextType {
   customers: Customer[];
   reservations: Reservation[];
   orders: Order[];
+  menu: MenuItem[];
   settings: RestaurantSettings;
   addReservation: (res: Reservation) => void;
   updateReservation: (res: Reservation) => void;
@@ -19,6 +20,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
   const [customers, setCustomers] = useState<Customer[]>(MOCK_CUSTOMERS);
   const [reservations, setReservations] = useState<Reservation[]>(MOCK_RESERVATIONS);
   const [orders, setOrders] = useState<Order[]>(MOCK_ORDERS);
+  const [menu, setMenu] = useState<MenuItem[]>(MOCK_MENU);
   const [settings, setSettings] = useState<RestaurantSettings>(MOCK_SETTINGS);
 
   const addReservation = (res: Reservation) => {
@@ -63,6 +65,7 @@ export const AppProvider: React.FC<{ children: React.ReactNode }> = ({ children 
       customers,
       reservations,
       orders,
+      menu,
       settings,
       addReservation,
       updateReservation,

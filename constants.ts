@@ -1,11 +1,11 @@
-import { Customer, Reservation, RestaurantSettings, Order } from './types';
+import { Customer, Reservation, RestaurantSettings, Order, MenuItem } from './types';
 
 export const MOCK_SETTINGS: RestaurantSettings = {
-  name: "Malinessa",
+  name: "Lumiere",
   description: "Experience the finest modern French fusion.",
   address: "123 Starlight Avenue, Metropolis",
   phone: "+1 (555) 012-3456",
-  email: "reservations@malinessa.com",
+  email: "reservations@lumiere.com",
   openingTime: "17:00",
   closingTime: "23:00",
   tables: 34,
@@ -26,12 +26,184 @@ export const MOCK_SETTINGS: RestaurantSettings = {
   }
 };
 
+export const MOCK_MENU: MenuItem[] = [
+  {
+    id: 'm1',
+    name: "Avocado Toast",
+    description: "Sourdough bread, smashed avocado, poached egg, chili flakes.",
+    price: 16.00,
+    category: "Starters",
+    imageUrl: "https://images.unsplash.com/photo-1588137372308-15f75323ca8d?auto=format&fit=crop&q=80&w=800",
+    available: true,
+    rating: 4.8,
+    reviews: 124
+  },
+  {
+    id: 'm2',
+    name: "Smoked Salmon Bagel",
+    description: "Cream cheese, capers, red onion, dill, lemon zest.",
+    price: 20.00,
+    category: "Starters",
+    imageUrl: "https://images.unsplash.com/photo-1516684732162-798a0062be99?auto=format&fit=crop&q=80&w=800",
+    available: true,
+    rating: 4.9,
+    reviews: 89
+  },
+  {
+    id: 'm3',
+    name: "Truffle Mushroom Pasta",
+    description: "Homemade tagliatelle, wild mushrooms, truffle oil, parmesan.",
+    price: 24.50,
+    category: "Mains",
+    imageUrl: "https://images.unsplash.com/photo-1626844131082-256783844137?auto=format&fit=crop&q=80&w=800",
+    available: true,
+    rating: 4.7,
+    reviews: 210
+  },
+  {
+    id: 'm4',
+    name: "Wagyu Beef Burger",
+    description: "Brioche bun, cheddar, caramelized onion, special sauce, fries.",
+    price: 28.00,
+    category: "Mains",
+    imageUrl: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&q=80&w=800",
+    available: true,
+    rating: 4.9,
+    reviews: 342
+  },
+  {
+    id: 'm5',
+    name: "Belgian Waffles",
+    description: "Fresh berries, whipped cream, maple syrup, mint.",
+    price: 18.50,
+    category: "Desserts",
+    imageUrl: "https://images.unsplash.com/photo-1558326567-98ae2405596b?auto=format&fit=crop&q=80&w=800",
+    available: false,
+    rating: 4.6,
+    reviews: 56
+  },
+  {
+    id: 'm6',
+    name: "Orange Fresh",
+    description: "Freshly squeezed oranges, ice.",
+    price: 8.50,
+    category: "Drinks",
+    imageUrl: "https://images.unsplash.com/photo-1613478223719-2ab802602423?auto=format&fit=crop&q=80&w=800",
+    available: true,
+    rating: 4.8,
+    reviews: 45
+  }
+];
+
 export const MOCK_ORDERS: Order[] = [
-  { id: '#12345', date: 'Sep 10, 2024', time: '14:45 PM', server: 'Mark Davis', amount: 85.50, paymentStatus: 'Paid', type: 'Delivery', status: 'Completed' },
-  { id: '#12346', date: 'Sep 10, 2024', time: '15:00 PM', server: 'Sarah Smith', amount: 120.00, paymentStatus: 'Paid', type: 'Dine-in', status: 'Cooking' },
-  { id: '#12347', date: 'Sep 10, 2024', time: '15:15 PM', server: 'John Doe', amount: 45.20, paymentStatus: 'Pending', type: 'Online', status: 'Ready' },
-  { id: '#12348', date: 'Sep 10, 2024', time: '15:30 PM', server: 'Emily Chen', amount: 60.00, paymentStatus: 'Unpaid', type: 'Takeaway', status: 'Completed' },
-  { id: '#12349', date: 'Sep 10, 2024', time: '15:45 PM', server: 'Mark Davis', amount: 95.50, paymentStatus: 'Paid', type: 'Dine-in', status: 'Completed' },
+  { 
+    id: '#12345', 
+    customerName: 'Esther Howard',
+    tableNumber: 'A-1',
+    date: 'Fri, Sep 27, 2024', 
+    time: '17:45 PM', 
+    server: 'Mark Davis', 
+    amount: 171.50, 
+    paymentStatus: 'Unpaid', 
+    type: 'Dine-in', 
+    status: 'In progress',
+    items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
+  { 
+    id: '#12346', 
+    customerName: 'Wade Warren',
+    tableNumber: 'A-2',
+    date: 'Fri, Sep 27, 2024', 
+    time: '17:35 PM', 
+    server: 'Sarah Smith', 
+    amount: 79.00, 
+    paymentStatus: 'Unpaid', 
+    type: 'Dine-in', 
+    status: 'In progress',
+     items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
+  { 
+    id: '#12347', 
+    customerName: 'Esther Howard',
+    tableNumber: 'A-3',
+    date: 'Fri, Sep 27, 2024', 
+    time: '17:25 PM', 
+    server: 'John Doe', 
+    amount: 79.00, 
+    paymentStatus: 'Unpaid', 
+    type: 'Dine-in', 
+    status: 'In progress',
+     items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
+  { 
+    id: '#12348', 
+    customerName: 'Jenny Wilson',
+    tableNumber: 'A-4',
+    date: 'Fri, Sep 27, 2024', 
+    time: '17:15 PM', 
+    server: 'Emily Chen', 
+    amount: 79.00, 
+    paymentStatus: 'Paid', 
+    type: 'Dine-in', 
+    status: 'Completed',
+     items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
+  { 
+    id: '#12349', 
+    customerName: 'Esther Howard',
+    tableNumber: 'A-5',
+    date: 'Fri, Sep 27, 2024', 
+    time: '17:00 PM', 
+    server: 'Mark Davis', 
+    amount: 79.00, 
+    paymentStatus: 'Unpaid', 
+    type: 'Dine-in', 
+    status: 'In progress',
+     items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
+    { 
+    id: '#12350', 
+    customerName: 'Robert Fox',
+    tableNumber: 'A-1',
+    date: 'Fri, Sep 27, 2024', 
+    time: '16:45 PM', 
+    server: 'Mark Davis', 
+    amount: 79.00, 
+    paymentStatus: 'Paid', 
+    type: 'Dine-in', 
+    status: 'Completed',
+     items: [
+      { name: 'Scrambled egg toast', quantity: 1, price: 16.00 },
+      { name: 'Smoked salmon bagel', quantity: 1, price: 20.00 },
+      { name: 'Belgian waffles', quantity: 1, price: 18.50 },
+      { name: 'Orange fresh', quantity: 2, price: 24.50 },
+    ]
+  },
 ];
 
 export const MOCK_CUSTOMERS: Customer[] = [

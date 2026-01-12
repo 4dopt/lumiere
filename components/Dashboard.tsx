@@ -236,7 +236,7 @@ export const Dashboard: React.FC = () => {
                             <td className="px-4 py-4">
                                  <span className={`px-2.5 py-1 rounded text-xs font-semibold ${
                                     order.status === 'Completed' ? 'bg-emerald-100 text-emerald-700' : 
-                                    order.status === 'Cooking' ? 'bg-blue-100 text-blue-700' : 
+                                    (order.status === 'Cooking' || order.status === 'In progress') ? 'bg-blue-100 text-blue-700' : 
                                     order.status === 'Ready' ? 'bg-indigo-100 text-indigo-700' : 'bg-gray-100 text-gray-700'
                                 }`}>
                                     {order.status}

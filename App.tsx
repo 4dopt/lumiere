@@ -8,6 +8,9 @@ import { Customers } from './components/Customers';
 import { Settings } from './components/Settings';
 import { BookingPage } from './components/BookingPage';
 import { PageEditor } from './components/PageEditor';
+import { Orders } from './components/Orders';
+import { Menu } from './components/Menu';
+import { Reports } from './components/Reports';
 
 const App: React.FC = () => {
   return (
@@ -24,6 +27,9 @@ const App: React.FC = () => {
           <Route path="/" element={<Layout />}>
             <Route index element={<Dashboard />} />
             <Route path="reservations" element={<Reservations />} />
+            <Route path="orders" element={<Orders />} />
+            <Route path="menu" element={<Menu />} />
+            <Route path="reports" element={<Reports />} />
             <Route path="customers" element={<Customers />} />
             <Route path="settings" element={<Settings />} />
           </Route>

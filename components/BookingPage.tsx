@@ -343,7 +343,7 @@ export const BookingPage: React.FC<BookingPageProps> = ({ customSettings, previe
         </div>
         
         <div className="mt-8 text-center">
-            <p className="text-xs opacity-40" style={{ color: design.textColor }}>Powered by Lumière Reserve</p>
+            <p className="text-xs opacity-40" style={{ color: design.textColor }}>Powered by Lumiere</p>
         </div>
       </div>
     </div>
